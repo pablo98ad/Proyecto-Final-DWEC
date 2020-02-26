@@ -1,1 +1,15 @@
-<p>distancia works!</p>
+<table>
+
+<tr *ngFor="let localidad of localidadesS.localidades | keyvalue">
+<td  title="{{localidad.value}}" (click)="calcularDistancia(localidad.key)">
+
+    <p ngClass="{'destacada': localidad.key=='Almansa'}" >{{localidad.key}}</p>
+  </td>
+
+
+</tr>
+
+
+
+
+</table>

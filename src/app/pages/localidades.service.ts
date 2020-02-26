@@ -8,6 +8,7 @@ export class LocalidadesService {
   public localidades: Map<string,CoodenadaGeografica>;
 
   constructor() {
+    this.localidades=new Map();
     this.localidades.set('Almansa',new CoodenadaGeografica(38.8682065,-1.0978627));
     this.localidades.set('Albacete',new CoodenadaGeografica(38.9890121,-1.8548699));
     this.localidades.set('Alicante',new CoodenadaGeografica(38.353738,-0.4901846));

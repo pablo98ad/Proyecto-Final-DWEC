@@ -20,17 +20,17 @@ export class CoodenadaGeografica{
   toSexagesimalLatitud (){
     let latSexagesimal= new Map();
     let grados=Math.trunc(this.latitud);
-    let minutos=Math.trunc((this.latitud-grados));
-    let segundos=(minutos-(this.latitud-grados))*60;
+    let minutos=Math.trunc((this.latitud-grados)*60);
+    let segundos=parseFloat(((minutos-(this.latitud-grados)*60)*60).toFixed(3));
     let puntoCardinal;
     if(this.latitud>0){
       puntoCardinal='N';
     }else{
       puntoCardinal='S';
     }
-    latSexagesimal.set('grados',grados);
-    latSexagesimal.set('minutos',minutos);
-    latSexagesimal.set('segundos',segundos);
+    latSexagesimal.set('grados',Math.abs(grados));
+    latSexagesimal.set('minutos',Math.abs(minutos));
+    latSexagesimal.set('segundos',Math.abs(segundos));
     latSexagesimal.set('puntoCardinal',puntoCardinal);
 
     return latSexagesimal;
@@ -39,17 +39,17 @@ export class CoodenadaGeografica{
   toSexagesimalLongitud(){
     let longSexagesimal= new Map();
     let grados=Math.trunc(this.longitud);
-    let minutos=Math.trunc((this.longitud-grados));
-    let segundos=(minutos-(this.longitud-grados))*60;
+    let minutos=Math.trunc((this.longitud-grados)*60);
+    let segundos=parseFloat(((minutos-(this.longitud-grados)*60)*60).toFixed(3));
     let puntoCardinal;
     if(this.longitud>0){
       puntoCardinal='E';
     }else{
       puntoCardinal='O';
     }
-    longSexagesimal.set('grados',grados);
-    longSexagesimal.set('minutos',minutos);
-    longSexagesimal.set('segundos',segundos);
+    longSexagesimal.set('grados',Math.abs(grados));
+    longSexagesimal.set('minutos',Math.abs(minutos));
+    longSexagesimal.set('segundos',Math.abs(segundos));
     longSexagesimal.set('puntoCardinal',puntoCardinal);
 
     return longSexagesimal;

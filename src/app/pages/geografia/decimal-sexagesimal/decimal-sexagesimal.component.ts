@@ -33,6 +33,7 @@ export class DecimalSexagesimalComponent implements OnInit {
     let sexagesimalLong= this.coordenadaAzar.toSexagesimalLongitud();
     let sexagesimalLat= this.coordenadaAzar.toSexagesimalLatitud();
     this.resultado='Fallo';
+    alert(this.puntoCardinalLatUser);
 
     if(this.gradosLongUser==sexagesimalLong.get('grados') && this.minutosLongUser==sexagesimalLong.get('minutos')){
       if(this.segundosLongUser==sexagesimalLong.get('segundos') && this.puntoCardinalLongUser==sexagesimalLong.get('puntoCardinal')){

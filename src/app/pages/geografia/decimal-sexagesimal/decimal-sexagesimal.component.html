@@ -2,30 +2,37 @@
 Longitud: <b>{{coordenadaAzar.getLongitud()}}</b></h3>
 
 <h3>Traduce a Sexagesimal: </h3>
-<b>Latitud</b><br>
-Grados: <input class="input" type="number" [(ngModel)]="gradosLatUser">
-Minutos: <input class="input" type="number" [(ngModel)]="minutosLatUser">
-Segundos: <input  class="input" type="number" [(ngModel)]="segundosLatUser">
-Punto Cardinal: <input class="input" type="text" [(ngModel)]="puntoCardinalLatUser">
+<div>
+  <b>Latitud: </b>
+  <!--<input type="radio" [value]="'N'"  [ngModel]="puntoCardinalLatUser" > N
+  <input type="radio" [value]="'S'"  [ngModel]="puntoCardinalLatUser" > S-->
+  <input class="input" type="text" [(ngModel)]="gradosLatUser">º
+  <input class="input" type="text" [(ngModel)]="minutosLatUser">'
+  <input  class="input segundos" type="text" [(ngModel)]="segundosLatUser">''
+  Punto Cardinal: <input class="input" type="text" [(ngModel)]="puntoCardinalLatUser">
+</div>
 <br>
-<b>Longitud </b><br>
-  Grados: <input class="input" type="number" [(ngModel)]="gradosLongUser">
-  Minutos: <input class="input" type="number" [(ngModel)]="minutosLongUser">
-  Segundos: <input  class="input" type="number" [(ngModel)]="segundosLongUser">
+<div>
+<b>Longitud:  </b>
+  <input class="input" type="text" [(ngModel)]="gradosLongUser">º
+  <input class="input" type="text" [(ngModel)]="minutosLongUser">'
+  <input  class="input segundos" type="text" [(ngModel)]="segundosLongUser">''
   Punto Cardinal: <input class="input" type="text" [(ngModel)]="puntoCardinalLongUser">
+</div>
 <br>
 
-<button (click)="evaluarRespuesta()">Comprobar</button>
+<button (click)="evaluarRespuesta()">Comprobar</button><br>
 
-<p *ngFor="let mapEntry of coordenadaAzar.toSexagesimalLongitud() | keyvalue">
-  {{ mapEntry.value }}
+
+lat:
+<p *ngFor="let mapEntry of coordenadaAzar.toSexagesimalLatitud() | keyvalue">
+  {{ mapEntry.value }} --> {{ mapEntry.key }}
 </p>
 <hr>
-<p *ngFor="let mapEntry of coordenadaAzar.toSexagesimalLatitud() | keyvalue">
-    {{ mapEntry.value }}
+long:
+<p *ngFor="let mapEntry of coordenadaAzar.toSexagesimalLongitud() | keyvalue">
+    {{ mapEntry.value }} --> {{ mapEntry.key }}
   </p>
-
-
 
 <h1 [ngClass]="{'mal':resultado=='Fallo', 'bien':resultado=='Acierto'}">{{resultado | uppercase}}</h1>
 

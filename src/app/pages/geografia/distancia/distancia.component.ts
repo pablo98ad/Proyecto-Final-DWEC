@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalidadesService } from '../../localidades.service';
 
 @Component({
   selector: 'ap-distancia',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DistanciaComponent implements OnInit {
 
-  constructor() { }
+  distanciaARefencia:number;
+
+  constructor(public localidadesS: LocalidadesService) {
+
+
+
+   }
 
   ngOnInit(): void {
+  }
+  calcularDistancia(localidad){
+
+    let referencia= this.localidadesS.localidades.get('Almansa');
+    let seleccionado= this.localidadesS.localidades.get(localidad);
+    alert(referencia.calcularDistancia(seleccionado));
+
   }
 
 }
