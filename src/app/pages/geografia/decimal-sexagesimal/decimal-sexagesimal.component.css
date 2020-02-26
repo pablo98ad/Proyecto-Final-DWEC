@@ -1,0 +1,16 @@
+.input{
+  width: 80px;
+  margin-right: 10px;
+}
+.ocultar{
+  display:none;
+}
+.mostrar{
+  display:inline;
+}
+.mal{
+  color:red;
+}
+.bien{
+  color:green;
+}
