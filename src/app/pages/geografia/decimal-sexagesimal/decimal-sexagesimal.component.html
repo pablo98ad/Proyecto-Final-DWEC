@@ -1,4 +1,4 @@
-<h3>Latitud: <b>{{coordenadaAzar.getLatitud()}}</b>
+<h3>Latitud: <b>{{coordenadaAzar.getLatitud()}}</b><br>
 Longitud: <b>{{coordenadaAzar.getLongitud()}}</b></h3>
 
 <h3>Traduce a Sexagesimal: </h3>
@@ -23,16 +23,16 @@ Longitud: <b>{{coordenadaAzar.getLongitud()}}</b></h3>
 
 <button (click)="evaluarRespuesta()">Comprobar</button><br>
 
-
+<h1 [ngClass]="{'mal':resultado=='Fallo', 'bien':resultado=='Acierto'}">{{resultado | uppercase}}</h1>
+<br>
 lat:
 <p *ngFor="let mapEntry of coordenadaAzar.toSexagesimalLatitud() | keyvalue">
-  {{ mapEntry.value }} --> {{ mapEntry.key }}
+  {{ mapEntry.key }} --> {{ mapEntry.value }}
 </p>
 <hr>
 long:
 <p *ngFor="let mapEntry of coordenadaAzar.toSexagesimalLongitud() | keyvalue">
-    {{ mapEntry.value }} --> {{ mapEntry.key }}
+    {{ mapEntry.key }} --> {{ mapEntry.value }}
   </p>
 
-<h1 [ngClass]="{'mal':resultado=='Fallo', 'bien':resultado=='Acierto'}">{{resultado | uppercase}}</h1>
 

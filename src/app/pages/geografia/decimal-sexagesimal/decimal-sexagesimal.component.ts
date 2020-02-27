@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoodenadaGeografica } from '../../CoordenadaGeografica'
+import { CoodenadaGeografica } from '../CoordenadaGeografica'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
@@ -33,7 +33,7 @@ export class DecimalSexagesimalComponent implements OnInit {
     let sexagesimalLong= this.coordenadaAzar.toSexagesimalLongitud();
     let sexagesimalLat= this.coordenadaAzar.toSexagesimalLatitud();
     this.resultado='Fallo';
-    alert(this.puntoCardinalLatUser);
+    //alert(this.puntoCardinalLatUser);
 
     if(this.gradosLongUser==sexagesimalLong.get('grados') && this.minutosLongUser==sexagesimalLong.get('minutos')){
       if(this.segundosLongUser==sexagesimalLong.get('segundos') && this.puntoCardinalLongUser==sexagesimalLong.get('puntoCardinal')){

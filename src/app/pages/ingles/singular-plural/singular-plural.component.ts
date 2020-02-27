@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PluralWordsService } from '../plural-words.service';
 
 @Component({
   selector: 'ap-singular-plural',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingularPluralComponent implements OnInit {
 
-  constructor() { }
+  palabra:string;
+  resultado:string;
+
+  constructor(public pluralWords: PluralWordsService) {
+
+   }
 
   ngOnInit(): void {
+  }
+
+  obtenerPlural(){
+    this.resultado=this.pluralWords.getPlural(this.palabra);
   }
 
 }

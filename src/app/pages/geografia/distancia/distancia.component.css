@@ -6,4 +6,18 @@ table{
 .destacada{
   text-transform: capitalize;
   font-weight: bold;
+
+}
+
+.destacada:hover{
+  background-color: plum;
+}
+
+table tr td:hover{
+  background-color: plum  ;
+  cursor: pointer;
+}
+
+table tr td{
+  text-align: center;
 }

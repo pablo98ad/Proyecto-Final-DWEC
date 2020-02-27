@@ -5,6 +5,9 @@ export class CoodenadaGeografica{
   private longitud:number;
 
   constructor(lat:number,long:number){
+    /*if(lat>90 || lat<-90 || long>180 || long<-180){
+      throw new Exception('Los valores pasados por parametro no son equivalentes a una coordenada');
+    }-->no se hacen asi las excepciones en typescript*/
     this.latitud=lat;
     this.longitud=long;
   }
@@ -21,7 +24,7 @@ export class CoodenadaGeografica{
     let latSexagesimal= new Map();
     let grados=Math.trunc(this.latitud);
     let minutos=Math.trunc((this.latitud-grados)*60);
-    let segundos=parseFloat(((minutos-(this.latitud-grados)*60)*60).toFixed(3));
+    let segundos=parseFloat(((minutos-(this.latitud-grados)*60)*60).toFixed(2));
     let puntoCardinal;
     if(this.latitud>0){
       puntoCardinal='N';
@@ -36,11 +39,11 @@ export class CoodenadaGeografica{
     return latSexagesimal;
   }
 
-  toSexagesimalLongitud(){
+  toSexagesimalLongitud():Map<string,any>{
     let longSexagesimal= new Map();
     let grados=Math.trunc(this.longitud);
     let minutos=Math.trunc((this.longitud-grados)*60);
-    let segundos=parseFloat(((minutos-(this.longitud-grados)*60)*60).toFixed(3));
+    let segundos=parseFloat(((minutos-(this.longitud-grados)*60)*60).toFixed(2));
     let puntoCardinal;
     if(this.longitud>0){
       puntoCardinal='E';
@@ -67,11 +70,10 @@ export class CoodenadaGeografica{
     let diferenciaLat=rad(this.latitud-punto.getLatitud());
     let diferenciaLong=rad(this.longitud-punto.getLongitud());
 
-    var a = Math.sin(diferenciaLat/2) * Math.sin(diferenciaLat/2) +
+    let a = Math.sin(diferenciaLat/2) * Math.sin(diferenciaLat/2) +
     Math.cos(rad(this.latitud)) * Math.cos(rad(punto.latitud)) * Math.sin(diferenciaLong/2) * Math.sin(diferenciaLong/2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     distancia = radioTierra * c;
-
 
     return distancia;
   }

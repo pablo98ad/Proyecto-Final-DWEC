@@ -1,15 +1,29 @@
+<h2 (mouseenter)="ponerCoordenadas('Almansa')"
+(mouseleave)="coordenadasSeleccionadas=''"
+(click)="distanciaARefencia=''">
+  Referencia: <b class="destacada"> ALMANSA</b>
+</h2>
 <table>
+  <tr>
+      <ng-container *ngFor="let localidad of localidadesS.localidades | keyvalue" >
 
-<tr *ngFor="let localidad of localidadesS.localidades | keyvalue">
-<td  title="{{localidad.value}}" (click)="calcularDistancia(localidad.key)">
+        <td (click)="calcularDistancia(localidad.key)" (mouseenter)="ponerCoordenadas(localidad.key)"
+        (mouseleave)="coordenadasSeleccionadas=''" *ngIf="localidad.key != 'Almansa'">
+          {{ localidad.key }}
+        </td>
 
-    <p ngClass="{'destacada': localidad.key=='Almansa'}" >{{localidad.key}}</p>
-  </td>
+      </ng-container>
+
+    <!--
+    <td *ngFor="let localidad of localidadesS.localidades | keyvalue"
+      (click)="calcularDistancia(localidad.key)" (mouseenter)="ponerCoordenadas(localidad.key)"
+      (mouseleave)="coordenadasSeleccionadas=''">
+      <p *ngIf="localidad.key != 'Almansa'">{{ localidad.key }}</p>
+    </td>-->
 
 
-</tr>
-
-
-
-
+  </tr>
 </table>
+<br>
+<h3>Coordenadas: <b>{{coordenadasSeleccionadas}}</b></h3>
+<h3>Distancia de {{localidadSeleccionada}} a Almansa: <b>{{distanciaARefencia}}</b></h3>
