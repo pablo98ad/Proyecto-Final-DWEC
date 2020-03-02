@@ -1,4 +1,5 @@
 import { TouchSequence } from 'selenium-webdriver';
+import { Sexagesimal } from './sexagesimal';
 
 export class CoodenadaGeografica{
   private latitud:number;
@@ -20,8 +21,8 @@ export class CoodenadaGeografica{
     return this.longitud
   }
 
-  toSexagesimalLatitud (){
-    let latSexagesimal= new Map();
+  toSexagesimalLatitud():Sexagesimal{
+    let latSexagesimal:Sexagesimal;
     let grados=Math.trunc(this.latitud);
     let minutos=Math.trunc((this.latitud-grados)*60);
     let segundos=parseFloat(((minutos-(this.latitud-grados)*60)*60).toFixed(2));
@@ -31,16 +32,18 @@ export class CoodenadaGeografica{
     }else{
       puntoCardinal='S';
     }
-    latSexagesimal.set('grados',Math.abs(grados));
-    latSexagesimal.set('minutos',Math.abs(minutos));
-    latSexagesimal.set('segundos',Math.abs(segundos));
-    latSexagesimal.set('puntoCardinal',puntoCardinal);
+    latSexagesimal= {
+      'grados':Math.abs(grados),
+      'minutos':Math.abs(minutos),
+      'segundos':Math.abs(segundos),
+      'puntoCardinal':puntoCardinal
+    }
 
-    return latSexagesimal;
+    return latSexagesimal;//devolver objeto literal - con interfaz
   }
 
-  toSexagesimalLongitud():Map<string,any>{
-    let longSexagesimal= new Map();
+  toSexagesimalLongitud():Sexagesimal{
+    let longSexagesimal:Sexagesimal;
     let grados=Math.trunc(this.longitud);
     let minutos=Math.trunc((this.longitud-grados)*60);
     let segundos=parseFloat(((minutos-(this.longitud-grados)*60)*60).toFixed(2));
@@ -50,11 +53,12 @@ export class CoodenadaGeografica{
     }else{
       puntoCardinal='O';
     }
-    longSexagesimal.set('grados',Math.abs(grados));
-    longSexagesimal.set('minutos',Math.abs(minutos));
-    longSexagesimal.set('segundos',Math.abs(segundos));
-    longSexagesimal.set('puntoCardinal',puntoCardinal);
-
+    longSexagesimal= {
+      'grados':Math.abs(grados),
+      'minutos':Math.abs(minutos),
+      'segundos':Math.abs(segundos),
+      'puntoCardinal':puntoCardinal
+    }
     return longSexagesimal;
   }
 
@@ -62,7 +66,7 @@ export class CoodenadaGeografica{
     return `[${this.latitud},${this.longitud}]`;
   }
 
-  calcularDistancia (punto:CoodenadaGeografica):number{
+  calcularDistancia (punto:CoodenadaGeografica):number{//implementar la formula del enunciado
     let distancia:number=0;
     let radioTierra=6378.137;
     let rad = x => x*Math.PI/180

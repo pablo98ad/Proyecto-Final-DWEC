@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import {EnglishWords} from './english-words';
 @Injectable({
   providedIn: 'root'
 })
 export class PluralWordsService {
 
   private irregularPlurals:Map<string,string>;
-  private unchangingWord:String[];
+  private unchangingWord:string[];
 
   constructor() {
     this.unchangingWord=[];
@@ -26,6 +25,9 @@ export class PluralWordsService {
     }else if(this.irregularPlurals.has(palabra)){
       plural=this.irregularPlurals.get(palabra);
 
+    }else if(this.esPluralMasSIS(palabra)){
+      plural=`${palabra.substring(0,palabra.length-3)}ses`;
+
     }else if(this.esPluralMasES(palabra)){
       plural=`${palabra}es`;
 
@@ -39,30 +41,36 @@ export class PluralWordsService {
       plural=`${palabra}s`
     }
 
-
     return plural;
   }
 
-
-  private esPluralMasOES(pal:string){
+  private esPluralMasSIS(pal:string):boolean{
     let es=false;
-    let expresionReg=/[a-z]o$/;
+    if(pal.endsWith('sis')){
+      es=true;
+    }
+    return es;
+  }
+
+  private esPluralMasOES(pal:string):boolean{
+    let es=false;
+    let expresionReg=/[b-df-hj-np-tv-xz]o$/;//termina en consonante y o
     if(expresionReg.test(pal)){
       es=true;
     }
     return es;
   }
 
-  private esPluralMasIES(pal:string){
+  private esPluralMasIES(pal:string):boolean{
     let es=false;
-    let expresionReg=/[a-z]y$/;
+    let expresionReg=/[b-df-hj-np-tv-xz]y$/;//termina en consonante e y
     if(expresionReg.test(pal)){
       es=true;
     }
     return es;
   }
 
-  private esPluralMasES(pal:string){
+  private esPluralMasES(pal:string):boolean{
     let terminaciones=['ch', 's', 'sh', 'x' , 'z'];
     let es=false;
     for(let i=0;i<terminaciones.length && !es;i++){
@@ -85,8 +93,7 @@ export class PluralWordsService {
     return indice;
   }
 
-  private rellenarUnchangingWord(){
-
+  private rellenarUnchangingWord():void{
     this.unchangingWord.push('bison');
     this.unchangingWord.push('cod');
     this.unchangingWord.push('deer');
@@ -99,7 +106,8 @@ export class PluralWordsService {
     this.unchangingWord.push('offspring');
     this.unchangingWord.push('aircraft');
   }
-  private rellenarIrregularPlurals(){
+
+  private rellenarIrregularPlurals():void{
     this.irregularPlurals.set('foot','feet');
     this.irregularPlurals.set('goose','geese');
     this.irregularPlurals.set('louse','lice');
@@ -113,8 +121,6 @@ export class PluralWordsService {
     this.irregularPlurals.set('thief','thieves');
     this.irregularPlurals.set('leaf','leaves');
     this.irregularPlurals.set('calf','calves');
-
   }
-
 
 }

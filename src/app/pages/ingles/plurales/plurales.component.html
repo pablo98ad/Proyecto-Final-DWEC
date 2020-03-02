@@ -1,1 +1,20 @@
-<p>plurales works!</p>
+<h3>Plurales</h3>
+<table>
+  <tr>
+    <th>Singular</th>
+    <th>Plural</th>
+  </tr>
+  <tr *ngFor="let palabra of cuatroPalabrasAleatorias; index as i;">
+    <td>{{ palabra }}</td>
+    <td>
+      <input
+        [ngClass]="resultados[i]"
+        type="text"
+        [(ngModel)]="respuestasUser[i]"
+      />
+    </td>
+  </tr>
+
+</table>
+
+<button (click)="comprobarRespuestas()">Comprobar</button>

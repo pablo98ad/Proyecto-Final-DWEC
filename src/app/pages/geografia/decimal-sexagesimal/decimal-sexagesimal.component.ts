@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoodenadaGeografica } from '../CoordenadaGeografica'
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Sexagesimal } from '../sexagesimal';
 
 @Component({
   selector: 'ap-decimal-sexagesimal',
@@ -10,58 +10,69 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class DecimalSexagesimalComponent implements OnInit {
 
   coordenadaAzar:CoodenadaGeografica;
-  gradosLongUser:number;
-  minutosLongUser:number;
-  segundosLongUser:number;
-  puntoCardinalLongUser:string;
-  gradosLatUser:number;
-  minutosLatUser:number;
-  segundosLatUser:number;
-  puntoCardinalLatUser:string;
-
+  latSexagesimalUser:Sexagesimal;//interfaz
+  longSexagesimalUser:Sexagesimal;//interfaz
   resultado:string;
-  constructor() {
 
+  constructor() {
+    this.resultado='';
    }
 
   ngOnInit(): void {
     this.coordenadaAzar=this.generarCoordenadaAleatoria();
+    this.latSexagesimalUser={
+      'grados':0,
+      'minutos':0,
+      'segundos':0,
+      'puntoCardinal':''
+    }
+    this.longSexagesimalUser={
+      'grados':0,
+      'minutos':0,
+      'segundos':0,
+      'puntoCardinal':''
+    }
   }
 
 
   evaluarRespuesta(): void{
-    let sexagesimalLong= this.coordenadaAzar.toSexagesimalLongitud();
-    let sexagesimalLat= this.coordenadaAzar.toSexagesimalLatitud();
+    let sexagesimalLong:Sexagesimal= this.coordenadaAzar.toSexagesimalLongitud();
+    let sexagesimalLat:Sexagesimal= this.coordenadaAzar.toSexagesimalLatitud();
     this.resultado='Fallo';
-    //alert(this.puntoCardinalLatUser);
 
-    if(this.gradosLongUser==sexagesimalLong.get('grados') && this.minutosLongUser==sexagesimalLong.get('minutos')){
-      if(this.segundosLongUser==sexagesimalLong.get('segundos') && this.puntoCardinalLongUser==sexagesimalLong.get('puntoCardinal')){
-        if(this.gradosLatUser==sexagesimalLat.get('grados') && this.minutosLatUser==sexagesimalLat.get('minutos')){
-          if(this.segundosLatUser==sexagesimalLat.get('segundos') && this.puntoCardinalLatUser==sexagesimalLat.get('puntoCardinal')){
+    if(this.longSexagesimalUser.grados==sexagesimalLong.grados && this.longSexagesimalUser.minutos==sexagesimalLong.minutos){
+      if(this.longSexagesimalUser.segundos==sexagesimalLong.segundos && this.longSexagesimalUser.puntoCardinal.toLowerCase()==sexagesimalLong.puntoCardinal.toLowerCase()){
+        if(this.latSexagesimalUser.grados==sexagesimalLat.grados && this.latSexagesimalUser.minutos==sexagesimalLat.minutos){
+          if(this.latSexagesimalUser.segundos==sexagesimalLat.segundos && this.latSexagesimalUser.puntoCardinal.toLowerCase()==sexagesimalLat.puntoCardinal.toLowerCase()){
             this.resultado='Acierto';
           }
         }
       }
     }
-
-
   }
-  generarCoordenadaAleatoria(){
-    let lat=parseFloat((Math.random()*91).toFixed(7));
-    let long=parseFloat((Math.random()*181).toFixed(7));;
 
-    let posONegLa= Math.trunc(Math.random()*2);
+  private generarCoordenadaAleatoria():CoodenadaGeografica{
+    let lat:number=parseFloat((Math.random()*91).toFixed(7));
+    let long:number=parseFloat((Math.random()*181).toFixed(7));;
+
+    let posONegLa:number= Math.trunc(Math.random()*2);
     if(posONegLa==1){
       lat=lat*-1;
     }
 
-    let posONeglo= Math.trunc(Math.random()*2);
+    let posONeglo:number= Math.trunc(Math.random()*2);
     if(posONeglo==1){
       long=long*-1;
     }
 
     return new CoodenadaGeografica(lat,long);
+  }
+
+
+
+  seleccionarAlClick(e:any):void{
+    e.target.select();
+   // console.log(e.target);<3
   }
 
 }

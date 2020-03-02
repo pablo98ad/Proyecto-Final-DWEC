@@ -12,7 +12,8 @@ export class SingularPluralComponent implements OnInit {
   resultado:string;
 
   constructor(public pluralWords: PluralWordsService) {
-
+    this.palabra='';
+    this.resultado='';
    }
 
   ngOnInit(): void {

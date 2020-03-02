@@ -1,4 +1,10 @@
-export class EnglishWords {
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EnglishWordsService {
+
   public words:string[];
 
   constructor(){
@@ -23,7 +29,4 @@ export class EnglishWords {
       "potato",
       "tomato",
       "zero"]}
-
-  }
-
-
+}

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuGeografiaComponent } from './menu-geografia/menu-geografia.component';
 import { DistanciaComponent } from './distancia/distancia.component';
 import { DecimalSexagesimalComponent } from './decimal-sexagesimal/decimal-sexagesimal.component';
+import { NotFoundComponent } from 'src/app/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,9 @@ const routes: Routes = [
       component: DistanciaComponent
     }
   ] }
+  ,
+  {path: 'not-found',component: NotFoundComponent },
+  {path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({

@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-//importamos los dos modulos
-import {InglesModule} from './pages/ingles/ingles.module'
-import {GeografiaModule} from './pages/geografia/geografia.module'
-import { AppComponent } from './app.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 const routes: Routes = [
-  /*{path:'',component:AppComponent}*/
-
+  {path:'',component:InicioComponent},
 ];
 
 @NgModule({

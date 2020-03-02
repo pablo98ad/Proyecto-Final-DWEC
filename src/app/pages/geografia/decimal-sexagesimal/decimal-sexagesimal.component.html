@@ -3,21 +3,19 @@ Longitud: <b>{{coordenadaAzar.getLongitud()}}</b></h3>
 
 <h3>Traduce a Sexagesimal: </h3>
 <div>
-  <b>Latitud: </b>
-  <!--<input type="radio" [value]="'N'"  [ngModel]="puntoCardinalLatUser" > N
-  <input type="radio" [value]="'S'"  [ngModel]="puntoCardinalLatUser" > S-->
-  <input class="input" type="text" [(ngModel)]="gradosLatUser">º
-  <input class="input" type="text" [(ngModel)]="minutosLatUser">'
-  <input  class="input segundos" type="text" [(ngModel)]="segundosLatUser">''
-  Punto Cardinal: <input class="input" type="text" [(ngModel)]="puntoCardinalLatUser">
+  <b>Latitud: </b><br>
+  <input class="input" (focus)="seleccionarAlClick($event)" type="text" [(ngModel)]="latSexagesimalUser.grados">º
+  <input class="input" (focus)="seleccionarAlClick($event)" type="text" [(ngModel)]="latSexagesimalUser.minutos">'
+  <input  class="input segundos" (focus)="seleccionarAlClick($event)"  type="text" [(ngModel)]="latSexagesimalUser.segundos">''
+  Punto Cardinal: <input (focus)="seleccionarAlClick($event)" class="input" type="text" [(ngModel)]="latSexagesimalUser.puntoCardinal">
 </div>
 <br>
 <div>
-<b>Longitud:  </b>
-  <input class="input" type="text" [(ngModel)]="gradosLongUser">º
-  <input class="input" type="text" [(ngModel)]="minutosLongUser">'
-  <input  class="input segundos" type="text" [(ngModel)]="segundosLongUser">''
-  Punto Cardinal: <input class="input" type="text" [(ngModel)]="puntoCardinalLongUser">
+<b>Longitud:  </b><br>
+  <input class="input" (focus)="seleccionarAlClick($event)" type="text" [(ngModel)]="longSexagesimalUser.grados">º
+  <input class="input" (focus)="seleccionarAlClick($event)" type="text" [(ngModel)]="longSexagesimalUser.minutos">'
+  <input  class="input segundos" (focus)="seleccionarAlClick($event)" type="text" [(ngModel)]="longSexagesimalUser.segundos">''
+  Punto Cardinal: <input class="input" (focus)="seleccionarAlClick($event)"  type="text" [(ngModel)]="longSexagesimalUser.puntoCardinal">
 </div>
 <br>
 
