@@ -29,7 +29,6 @@ export class DistanciaComponent implements OnInit {
   calcularDistancia(e:any,localidad:string):void{
     //para cuando hagamos click en uno, se quite la clase conClick en el anterior
     let seleccionados=document.querySelectorAll(".conClick");
-    //console.log(seleccionados);
     for (let i=0;i<seleccionados.length;i++){
       seleccionados[i].classList.remove('conClick');
     }

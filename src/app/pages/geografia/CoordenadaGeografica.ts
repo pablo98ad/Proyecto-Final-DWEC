@@ -68,16 +68,18 @@ export class CoodenadaGeografica{
 
   calcularDistancia (punto:CoodenadaGeografica):number{//implementar la formula del enunciado
     let distancia:number=0;
-    let radioTierra=6378.137;
-    let rad = x => x*Math.PI/180
+    let radioTierra:number=6378.137;
+    //transformamos las latitudes y longitudes a radianes
+    let lat1Radian=this.getLatitud()*Math.PI/180;
+    let lat2Radian=punto.getLatitud()*Math.PI/180;
+    let long1Radian=this.getLongitud()*Math.PI/180;
+    let long2Radian=punto.getLongitud()*Math.PI/180;
 
-    let diferenciaLat=rad(this.latitud-punto.getLatitud());
-    let diferenciaLong=rad(this.longitud-punto.getLongitud());
-
-    let a = Math.sin(diferenciaLat/2) * Math.sin(diferenciaLat/2) +
-    Math.cos(rad(this.latitud)) * Math.cos(rad(punto.latitud)) * Math.sin(diferenciaLong/2) * Math.sin(diferenciaLong/2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    distancia = radioTierra * c;
+    distancia= 2*radioTierra*Math.asin(Math.sqrt(
+        Math.pow(Math.sin((lat1Radian-lat2Radian)/2),2)+
+        Math.cos(lat1Radian)*Math.cos(lat2Radian)*
+        Math.pow(Math.sin((long1Radian-long2Radian)/2),2)
+    ));
 
     return distancia;
   }
